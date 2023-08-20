@@ -353,7 +353,7 @@ bool output_txt(struct whisper_context * ctx, const char * fname, const whisper_
             speaker = estimate_diarization_speaker(pcmf32s, t0, t1);
         }
 
-        fout << speaker << text << "\n";
+        fout << speaker.c_str() << text << "\n";
     }
 
     return true;
@@ -385,7 +385,7 @@ bool output_vtt(struct whisper_context * ctx, const char * fname, const whisper_
         }
 
         fout << to_timestamp(t0) << " --> " << to_timestamp(t1) << "\n";
-        fout << speaker << text << "\n\n";
+        fout << speaker.c_str() << text << "\n\n";
     }
 
     return true;
@@ -414,7 +414,7 @@ bool output_srt(struct whisper_context * ctx, const char * fname, const whisper_
 
         fout << i + 1 + params.offset_n << "\n";
         fout << to_timestamp(t0, true) << " --> " << to_timestamp(t1, true) << "\n";
-        fout << speaker << text << "\n\n";
+        fout << speaker.c_str() << text << "\n\n";
     }
 
     return true;
@@ -782,7 +782,7 @@ bool output_lrc(struct whisper_context * ctx, const char * fname, const whisper_
             speaker = estimate_diarization_speaker(pcmf32s, t0, t1);
         }
 
-        fout <<  '[' << timestamp_lrc << ']' << speaker << text << "\n";
+        fout <<  '[' << timestamp_lrc << ']' << speaker.c_str() << text << "\n";
     }
 
     return true;
